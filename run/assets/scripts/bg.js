@@ -12,24 +12,24 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        ladderLists: [
-            {
-                left: true,
-                right: true
-            },
-            {
-                left: false,
-                right: true
-            },
-            {
-                left: true,
-                right: true
-            },
-            {
-                left: true,
-                right: false
-            }
-        ]
+        // ladderLists: [
+        //     {
+        //         left: true,
+        //         right: true
+        //     },
+        //     {
+        //         left: false,
+        //         right: true
+        //     },
+        //     {
+        //         left: true,
+        //         right: true
+        //     },
+        //     {
+        //         left: true,
+        //         right: false
+        //     }
+        // ]
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -54,17 +54,18 @@ cc.Class({
             var people = cc.find('Canvas/people').getComponent('people');
             people.pmTouchHandle()
         }, this)
+        this.updateLadder();
     },
 
     start () {   
     },
 
     updateLadder () {
-        var node = new cc.Node('Sprite');
-        var sp = node.addComponent(cc.Sprite);
+        // var node = new cc.Node('Sprite');
+        // var sp = node.addComponent(cc.Sprite);
 
-        sp.spriteFrame = this.sprite;
-        node.parent = this.node;
+        // sp.spriteFrame = this.sprite;
+        // node.parent = this.node;
         // for (let i = 0; i < this.ladderLists.length; i++) {
 
         // }

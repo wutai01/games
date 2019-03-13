@@ -12,6 +12,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        ladderPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -32,6 +36,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        var ladder = cc.instantiate(this.ladderPrefab);
+        this.node.addChild(ladder);
+        console.log(ladder, 'ladderladder');
     },
 
     start () {
