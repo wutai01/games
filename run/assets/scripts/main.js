@@ -16,6 +16,17 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        step: 0,
+        ladderLen: 15,
+        people: {
+            default: null,
+            type: cc.Node
+        },
+
+        bg: {
+            default: null,
+            type: cc.Node
+        }
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -36,9 +47,30 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        var ladder = cc.instantiate(this.ladderPrefab);
-        this.node.addChild(ladder);
-        console.log(ladder, 'ladderladder');
+        this.node.on('bg-click', (event) => {
+            this.step = this.step + 1;
+            this.ladderLen = this.ladderLen + 1
+            
+            this.people.getComponent('people').setStep(this.step);
+
+            Global.ladderNode = null
+        
+            var ladder = cc.instantiate(this.ladderPrefab);
+            ladder.y = this.ladderLen * 80 - 200;
+            ladder.getComponent('ladder').setMathCeil();
+            cc.find('Canvas/bg/ladderBg').addChild(ladder);
+            event.stopPropagation();
+        });
+        for (let i = 0; i < 15; i++) {
+            var ladder = cc.instantiate(this.ladderPrefab);
+            ladder.y = i * 80 - 200;
+            if (i > 4) {
+                // console.log();
+                ladder.getComponent('ladder').setMathCeil();
+            } 
+            cc.find('Canvas/bg/ladderBg').addChild(ladder);
+        }
+        
     },
 
     start () {

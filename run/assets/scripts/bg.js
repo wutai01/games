@@ -50,9 +50,15 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        var seq = cc.sequence(cc.moveBy(0.3, 0, -80), cc.moveBy(0.5, 0, 0));
         this.node.on('touchstart', (event) => {
-            var people = cc.find('Canvas/people').getComponent('people');
-            people.pmTouchHandle()
+            var people = cc.find('Canvas/bg/ladderBg/people').getComponent('people');
+            people.pmTouchHandle();
+            this.node.dispatchEvent(new cc.Event.EventCustom('bg-click', true));
+            setTimeout(() => {
+                cc.find('Canvas/bg/ladderBg').runAction(seq);
+            }, 10)
+
         }, this)
         this.updateLadder();
     },
